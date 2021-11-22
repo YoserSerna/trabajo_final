@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2> Listado de Origenes</h2>
+<h1 class="pull-right">
+  <a href="{% url 'origenes:origenCreate' %}" class="btn btn-primary pull-right" style="margin-top: -10px; margin-bottom: 5px">Agregar</a>
+</h1>
+
+<table class="table  table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">viaje</th>
+      <th scope="col">viajero</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if origenes %}
+        {% for origen in origenes %}
+           <tr>
+      
+              <td>{{ origen.id}}</td>
+              <td>{{ origen.viaje}}</td>
+              <td>{{ origen.viajero}}</td>
+             <td>
+              <a class="btn btn-warning" href="{% url 'origenes:origenEdit' origen.id %}">  
+               
+                <i class="fas fa-pen-square"></i>
+                </a>
+               <a class="btn btn-danger" href="{% url 'origenes:origenDelete' origen.id %}">
+                
+                <i class="fas fa-trash-alt"></i>
+        
+
+               </a>
+                
+             </td>
+               
+              
+           </tr>
+           {% endfor %}
+           {% else %}  
+             <h3> Sin registros</h3>
+         {% endif %}
+         
+       </tbody>
+     </table>
+  {% endblock %}

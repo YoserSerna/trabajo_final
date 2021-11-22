@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2> Listado de Destinos</h2>
+<h1 class="pull-right">
+  <a href="{% url 'destinos:destinoCreate' %}" class="btn btn-primary pull-right" style="margin-top: -10px; margin-bottom: 5px">Agregar</a>
+</h1>
+
+<table class="table  table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">viaje</th>
+      <th scope="col">viajero</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if destinos %}
+        {% for destino in destinos %}
+           <tr>
+      
+              <td>{{ destino.id}}</td>
+              <td>{{ destino.viaje}}</td>
+              <td>{{ destino.viajero}}</td>
+             <td>
+              <a class="btn btn-warning" href="{% url 'destinos:destinoEdit' destino.id %}">  
+               
+                <i class="fas fa-pen-square"></i>
+                </a>
+               <a class="btn btn-danger" href="{% url 'destinos:destinoDelete' destino.id %}">
+                
+                <i class="fas fa-trash-alt"></i>
+        
+
+               </a>
+                
+             </td>
+               
+              
+           </tr>
+           {% endfor %}
+           {% else %}  
+             <h3> Sin registros</h3>
+         {% endif %}
+         
+       </tbody>
+     </table>
+  {% endblock %}
