@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2> Listado de Viajes</h2>
+<h1 class="pull-right">
+  <a href="{% url 'viajes:viajeCreate' %}" class="btn btn-primary pull-right" style="margin-top: -10px; margin-bottom: 5px">Agregar</a>
+</h1>
+
+<table class="table  table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">numero_plazas</th>
+      <th scope="col">fecha_viaje</th>
+      <th scope="col">viajero</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if viajes %}
+        {% for viaje in viajes %}
+           <tr>
+              <td>{{ viaje.id}}</td>
+              <td>{{ viaje.numero_plazas}}</td>
+              <td>{{ viaje.fecha_viaje}}</td>
+              <td>{{ viaje.viajero}}</td>
+             <td>
+              <a class="btn btn-warning" href="{% url 'viajes:viajeEdit' viaje.id %}">  
+               
+                <i class="fas fa-pen-square"></i>
+                </a>
+               <a class="btn btn-danger" href="{% url 'viajes:viajeDelete' viaje.id %}">
+                
+                <i class="fas fa-trash-alt"></i>
+        
+
+               </a>
+                
+             </td>
+               
+              
+           </tr>
+           {% endfor %}
+           {% else %}  
+             <h3> Sin registros</h3>
+         {% endif %}
+         
+       </tbody>
+     </table>
+  {% endblock %}
