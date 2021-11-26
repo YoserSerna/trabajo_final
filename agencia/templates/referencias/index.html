@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2> Listado de Referencias</h2>
+<h1 class="pull-right">
+  <a href="{% url 'referencias:referenciaCreate' %}" class="btn btn-primary pull-right" style="margin-top: -10px; margin-bottom: 5px">Agregar</a>
+</h1>
+
+<table class="table  table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">nombre</th>
+      <th scope="col">apellido</th>
+      <th scope="col">direccion</th>
+      <th scope="col">telefono</th>
+      <th scope="col">viaje</th>
+      <th scope="col">viajero</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if referencias %}
+        {% for referencia in referencias %}
+           <tr>
+      
+              <td>{{ referencia.id}}</td>
+              <td>{{ referencia.nombre}}</td>
+              <td>{{ referencia.apellido}}</td>
+              <td>{{ referencia.direccion}}</td>
+              <td>{{ referencia.telefono}}</td>
+              <td>{{ referencia.viaje}}</td>
+              <td>{{ referencia.viajero}}</td>
+             <td>
+              <a class="btn btn-warning" href="{% url 'referencias:referenciaEdit' referencia.id %}">  
+               
+                <i class="fas fa-pen-square"></i>
+                </a>
+               <a class="btn btn-danger" href="{% url 'referencias:referenciaDelete' referencia.id %}">
+                
+                <i class="fas fa-trash-alt"></i>
+        
+
+               </a>
+                
+             </td>
+               
+              
+           </tr>
+           {% endfor %}
+           {% else %}  
+             <h3> Sin registros</h3>
+         {% endif %}
+         
+       </tbody>
+     </table>
+  {% endblock %}
